@@ -1,0 +1,48 @@
+.add-list{
+    color: #000;
+    svg{
+      path{
+        stroke: #000;;
+      }
+    }
+    opacity: 0.8;
+    &:hover{
+      opacity: 1;
+    }
+  &__popup-close-btn{
+    position: absolute;
+    right: -5px;
+    top:-5px;
+    opacity: .8;
+    cursor: pointer;
+    &:hover{
+      opacity: 1;
+    }
+  }
+    &__popup {
+      margin-top: -35px;
+      position: absolute;
+      background-color: white;
+      border-radius: 5px;
+      box-sizing: border-box;
+      width: 315px;
+      padding: 18px;
+      box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+      transition: .9s;
+      button{
+        width: 100%;
+        margin-bottom: 0px;
+      }
+      input{
+
+        width: 100%;
+      }
+      ul{
+        display: flex;
+        position: static;
+        padding: 10px 0px;
+        justify-content: space-between;
+      }
+    }
+
+  }
