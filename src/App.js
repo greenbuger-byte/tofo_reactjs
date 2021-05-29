@@ -2,14 +2,14 @@ import './App.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {List, Tasks, AddList} from './components'
-
+import Skeleton from "react-loading-skeleton";
 
 function App() {
     const [lists, setLists] = useState([]);
     const [colors, setColors] = useState([]);
 
     useEffect(()=>{
-        axios.get('http://localhost:8000/lists?_expand=color').then(({data})=>{
+        axios.get('http://localhost:8000/lists?_expand=color&_embed=tasks').then(({data})=>{
             setLists(data);
         });
         axios.get('http://localhost:8000/colors').then(({data})=>{
@@ -18,11 +18,15 @@ function App() {
     },[]);
 
     const addList = (obj)=>{
-        setLists([...lists, obj])
+           setLists([...lists, obj]);
     }
     const removeList = (id)=>{
-        const removeFromList = lists.filter(l=>l.id!==id);
-        setLists(removeFromList);
+      if(window.confirm('Вы действительно хотите удалить список?')){
+          axios.delete('http://localhost:8000/lists/'+id).then(({data})=>{
+              const removeFromList = lists.filter(l=>l.id!==id);
+              setLists(removeFromList);
+          });
+      }
     }
   return (
     <div className="todo">
@@ -45,7 +49,7 @@ function App() {
           <AddList addList = {addList} colors={colors}/>
       </div>
         <div className={'todo__tasks'}>
-            <Tasks/>
+           <Tasks list={lists[1]}/>
         </div>
     </div>
   );

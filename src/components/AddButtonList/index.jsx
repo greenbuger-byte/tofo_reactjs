@@ -3,12 +3,14 @@ import List from "../List"
 import './addListButton.scss';
 import Badge from "../Badge";
 import closeBtn from "../../assets/img/close.svg";
+import axios from "axios";
 
 const AddButtonList = ({colors, addList})=>{
 
     const [visiblePopup, setVisiblePopup] = useState();
     const [selectedColor, setSelectedColor] = useState(null);
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const resetForm = ()=>{
         setVisiblePopup(false)
@@ -16,11 +18,18 @@ const AddButtonList = ({colors, addList})=>{
         setSelectedColor(colors[0].id)
     }
 
-    const createList = ()=>{
-        if(!inputValue){   alert('Веддите название списка'); return;}
-        const list = {id: Date.now(), name: inputValue, colorId:selectedColor,  color: colors.filter(color=>color.id === selectedColor)[0]};
-        addList(list);
-        resetForm();
+    const createList = async ()=>{
+
+        if(!inputValue){   alert('Введите название списка'); return;}
+        const list = {name: inputValue, colorId:selectedColor};
+        setIsLoading(true);
+        try {
+            const result = await axios.post('http://localhost:8000/lists', list);
+            const newListToAdd = {...result.data, color: colors.filter(c=>c.id===result.data.colorId)[0]};
+            await addList(newListToAdd);
+            resetForm();
+        } catch (err){ console.log(err); }
+        setIsLoading(false);
     }
 
     useEffect(()=>{
@@ -55,7 +64,7 @@ const AddButtonList = ({colors, addList})=>{
                             )}
                         </ul>
                     </div>
-                    <button onClick={createList}>Добавить</button>
+                    <button onClick={createList} disabled={isLoading}>{isLoading? 'Добавление ...' : 'Добавить'}</button>
                 </div>
             }
         </div>
