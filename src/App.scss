@@ -21,6 +21,8 @@
 
     &__tasks{
         min-height: 100vh;
+        flex:1;
+        padding:60px;
     }
 
 }
@@ -52,3 +54,4 @@ button{
         background: darken(#4DD599, 10%);
     }
 }
+

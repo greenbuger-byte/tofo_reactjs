@@ -2,8 +2,9 @@ import React from "react";
 import './list.scss';
 import classNames from "classnames";
 import Badge from "../Badge";
+import removeIcon from '../../assets/img/remove.svg';
 
-const List = ({items, isRemovable, onClick}) =>{
+const List = ({items, isRemovable, onClick, onRemove}) =>{
     console.log(isRemovable);
     return (
         <ul className={'list'} onClick={onClick}>
@@ -14,6 +15,7 @@ const List = ({items, isRemovable, onClick}) =>{
                             item.icon ? <i>{item.icon}</i> : (<Badge color={item.color}/> )
                         }
                         <span> {item.name} </span>
+                        {isRemovable && <img onClick={()=>onRemove(item.id)} className={'list__remove-icon'} src={removeIcon} alt={'remove'}/>}
                     </li>
                 ))
             }
