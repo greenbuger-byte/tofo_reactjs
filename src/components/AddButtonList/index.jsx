@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import List from "../List"
 import './addListButton.scss';
 import Badge from "../Badge";
@@ -7,7 +7,7 @@ import closeBtn from "../../assets/img/close.svg";
 const AddButtonList = ({colors, addList})=>{
 
     const [visiblePopup, setVisiblePopup] = useState();
-    const [selectedColor, setSelectedColor] = useState(colors[0].id);
+    const [selectedColor, setSelectedColor] = useState(null);
     const [inputValue, setInputValue] = useState('')
 
     const resetForm = ()=>{
@@ -17,14 +17,16 @@ const AddButtonList = ({colors, addList})=>{
     }
 
     const createList = ()=>{
-        if(!inputValue){
-            alert('Веддите название списка');
-            return;
-        }
-        const list = {id: Date.now(), name: inputValue, colorId:selectedColor,  color: colors.filter(color=>color.id ===  selectedColor)[0].name};
+        if(!inputValue){   alert('Веддите название списка'); return;}
+        const list = {id: Date.now(), name: inputValue, colorId:selectedColor,  color: colors.filter(color=>color.id === selectedColor)[0]};
         addList(list);
         resetForm();
     }
+
+    useEffect(()=>{
+        console.log(colors);
+       if(Array.isArray(colors) && colors.length>0){  setSelectedColor(colors[0].id);  }
+    },[colors]);
 
     return (
         <div>
