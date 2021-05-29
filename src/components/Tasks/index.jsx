@@ -4,17 +4,34 @@ import "./tasks.scss"
 
 import editIcon from "../../assets/img/edit.svg"
 import Skeleton from "react-loading-skeleton";
+import axios from "axios";
+import AddTaskForm from "./AddTaskForm";
 
-const Tasks = ({list})=>{
+const Tasks = ({list, onEditTitle})=>{
 
+    const editTitle = ()=>{
+        const newTitle = window.prompt('Редактировать название списка', list.name);
+        if(newTitle){
+            axios.patch(`http://localhost:8000/lists/${list.id}`, {"name":newTitle}).then(({data})=>{
+                onEditTitle(list.id, newTitle);
+            }).catch(err=>{
+              console.log(err);
+              alert('Не удалось обновить название списка');
+            })
+
+        }
+    }
     return(<React.Fragment>
-    {!!list ? <div className={'tasks'}>
+    {list ? (
+        <div className={'tasks'}>
                 <h2 className={'tasks__title'}>
                     {list.name}
-                    <img src={editIcon} alt={'edit'} />
+                    <img src={editIcon}  onClick={editTitle} alt={'edit'} />
                 </h2>
+            {list.tasks.length === 0 ? (<h3>🤚 НЕТ ЗАДАЧ</h3>) :
                 <div className={'tasks__items'}>
-                    {list.tasks.map(task => (<div key={task.id} className={'tasks__items-row'}>
+                    {list.tasks.map(task => (
+                        <div key={task.id} className={'tasks__items-row'}>
                             <div className={'checkbox'}>
                                 <input id={`task-${task.id}`} type={'checkbox'}/>
                                 <label htmlFor={`task-${task.id}`}>
@@ -34,11 +51,12 @@ const Tasks = ({list})=>{
                                     </svg>
                                 </label>
 
-                            </div>    <p>{task.text}</p>
+                            </div>   <input readOnly value={task.text} />
                         </div>
                     ))}
-                </div>
-            </div>
+
+                </div>}  <AddTaskForm/>
+            </div>)
             :
         <TaskSkeleton/>
     }

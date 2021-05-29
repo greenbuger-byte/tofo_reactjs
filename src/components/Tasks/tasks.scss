@@ -1,13 +1,39 @@
 .tasks{
 
+  &__form{
+    display: flex;
+    align-items: center;
+    span{
+      font-size: 16px;
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+    img{
+      width: 24px;
+      height: 24px;
+    }
+  }
+  h3{
+    padding: 40px;
+    width: 100%;
+    color: #b6b6b6;
+    justify-content: center;
+    align-items: center;
+  }
   &__items {
     margin-top: 30px;
 
     &-row {
+
       display: flex;
       flex-direction: row;
       align-items: center;
-
+      input{
+        width: 100%;
+        border: 0px;
+        padding: 15px;
+        font-size: 14px;
+      }
       p {
         padding: 15px;
       }

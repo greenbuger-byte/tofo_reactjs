@@ -37,6 +37,11 @@
       }
     }
     span{
+        text-overflow: ellipsis;
+        width: 160px;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
       flex:1;
     }
     &.active{
