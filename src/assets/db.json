@@ -19,16 +19,6 @@
       "id": 4,
       "name": "Книги",
       "colorId": 2
-    },
-    {
-      "id": 5,
-      "name": "Личное",
-      "colorId": 1
-    },
-    {
-      "name": "fsdfgdf",
-      "colorId": 2,
-      "id": 6
     }
   ],
   "tasks": [

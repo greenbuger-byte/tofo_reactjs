@@ -16,8 +16,8 @@ const Tasks = ({list})=>{
                 <div className={'tasks__items'}>
                     {list.tasks.map(task => (<div key={task.id} className={'tasks__items-row'}>
                             <div className={'checkbox'}>
-                                <input id={'check'} type={'checkbox'}/>
-                                <label htmlFor={"check"}>
+                                <input id={`task-${task.id}`} type={'checkbox'}/>
+                                <label htmlFor={`task-${task.id}`}>
                                     <svg width="11"
                                          height="8"
                                          viewBox="0 0 11 8"

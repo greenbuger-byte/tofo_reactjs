@@ -1,8 +1,9 @@
-import './App.scss';
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {List, Tasks, AddList} from './components'
-import Skeleton from "react-loading-skeleton";
+
+import {List, Tasks, AddList} from './components';
+
+import './App.scss';
 
 function App() {
     const [lists, setLists] = useState([]);
