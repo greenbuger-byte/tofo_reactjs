@@ -64,7 +64,7 @@ const AddButtonList = ({colors, addList})=>{
                             )}
                         </ul>
                     </div>
-                    <button onClick={createList} disabled={isLoading}>{isLoading? 'Добавление ...' : 'Добавить'}</button>
+                    <button  className={'btn__green'} onClick={createList} disabled={isLoading}>{isLoading? 'Добавление ...' : 'Добавить'}</button>
                 </div>
             }
         </div>

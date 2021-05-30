@@ -15,13 +15,16 @@
     &__sidebar{
         background-color: #f4f6f8;
         width: 233px;
+        height: calc(100vh - 60px);
         border-right:1px solid #e0e0e0;
         padding: 60px 20px;
     }
 
     &__tasks{
-        min-height: 100vh;
+        height: 80vh;
         flex:1;
+        overflow: hidden;
+        overflow-y:scroll;
         padding:60px;
     }
 
@@ -41,17 +44,42 @@ input{
     }
 }
 button{
-    background-color: #4DD599;
-    color: white;
     border: none;
     padding: 10px 13px;
     cursor: pointer;
     border-radius: 4px;
-    &:hover{
-        background: darken(#4DD599, 6%);
+
+}
+.btn {
+    &__green{
+        background-color: #4DD599;
+        color: white;
+        &:hover{
+            background: darken(#4DD599, 6%);
+        }
+        &:active{
+            background: darken(#4DD599, 10%);
+        }
+        &:disabled{
+             background: #b6b6b6;
+             color: #fff;
+         }
     }
-    &:active{
-        background: darken(#4DD599, 10%);
+    &__grey{
+        background-color: #f4f6f8;
+        color: #444;
+        &:hover{
+            background: darken( #f4f6f8, 6%);
+        }
+        &:active{
+            background: darken( #f4f6f8, 10%);
+        }
+        &:disabled{
+            background: #b6b6b6;
+            color: #fff;
+        }
     }
+
+
 }
 

@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import axios from "axios";
 import AddTaskForm from "./AddTaskForm";
 
-const Tasks = ({list, onEditTitle})=>{
+const Tasks = ({list, onEditTitle, onAddTask})=>{
 
     const editTitle = ()=>{
         const newTitle = window.prompt('Редактировать название списка', list.name);
@@ -24,7 +24,7 @@ const Tasks = ({list, onEditTitle})=>{
     return(<React.Fragment>
     {list ? (
         <div className={'tasks'}>
-                <h2 className={'tasks__title'}>
+                <h2 className={'tasks__title'} style={{color: list.color.hex}}>
                     {list.name}
                     <img src={editIcon}  onClick={editTitle} alt={'edit'} />
                 </h2>
@@ -55,7 +55,8 @@ const Tasks = ({list, onEditTitle})=>{
                         </div>
                     ))}
 
-                </div>}  <AddTaskForm/>
+                </div>}
+            <AddTaskForm onAddTask={onAddTask} list = {list} />
             </div>)
             :
         <TaskSkeleton/>
