@@ -33,7 +33,6 @@ const AddButtonList = ({colors, addList})=>{
     }
 
     useEffect(()=>{
-        console.log(colors);
        if(Array.isArray(colors) && colors.length>0){  setSelectedColor(colors[0].id);  }
     },[colors]);
 

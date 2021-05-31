@@ -1,15 +1,26 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route, useHistory, useLocation} from "react-router-dom";
 
 import {List, Tasks, AddList} from './components';
 
 import './App.scss';
 
 function App() {
+    let history = useHistory();
+    let location = useLocation();
     const [lists, setLists] = useState([]);
     const [colors, setColors] = useState([]);
     const [activeItem, setActiveItem] = useState(null)
+
+
+    useEffect(()=>{
+        const itemId = location.pathname.split('lists/')[1];
+            let list = lists.find(list=> list.id=== Number(itemId));
+            console.log(list);
+            setActiveItem(list);
+
+    }, [lists, location])
 
     useEffect(()=>{
         axios.get('http://localhost:8000/lists?_expand=color&_embed=tasks').then(({data})=>{
@@ -19,6 +30,8 @@ function App() {
             setColors(data);
         });
     },[]);
+
+
 
     const onEditTitle = (id, name)=>{
         const newList = lists.map(item=>{
@@ -48,11 +61,15 @@ function App() {
           });
       }
     }
+
+
   return (
-      <BrowserRouter>
+
     <div className="todo">
       <div className={'todo__sidebar'}>
-        <List items={
+        <List
+            onClickItem={item=> history.push(`/`)}
+            items={
             [
                 {
                     active: true,
@@ -69,7 +86,7 @@ function App() {
         />
           <List items={lists}
                 onRemove={(id)=>removeList(id)}
-                onClickItem={item=>setActiveItem(item)}
+                onClickItem={item=> history.push(`/lists/${item.id}`)}
                 activeItem ={activeItem}
                 isRemovable
 
@@ -87,7 +104,7 @@ function App() {
                 }
 
             </Route>
-            <Route path={'/:id'}>
+            <Route path={'/lists/:id'}>
                 <Tasks list={activeItem} onAddTask={addTask}  onEditTitle = {onEditTitle}/>
             </Route>
 
@@ -95,7 +112,6 @@ function App() {
 
         </div>
     </div>
-      </BrowserRouter>
   );
 }
 
