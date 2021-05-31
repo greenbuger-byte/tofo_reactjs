@@ -19,16 +19,6 @@
       "id": 4,
       "name": "Книги",
       "colorId": 2
-    },
-    {
-      "name": "qweqwe",
-      "colorId": 1,
-      "id": 5
-    },
-    {
-      "name": "345345",
-      "colorId": 1,
-      "id": 6
     }
   ],
   "tasks": [
@@ -265,6 +255,12 @@
       "text": "w",
       "completed": false,
       "id": 41
+    },
+    {
+      "listId": 4,
+      "text": "ewerr",
+      "completed": false,
+      "id": 42
     }
   ],
   "colors": [

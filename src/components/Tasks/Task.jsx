@@ -1,4 +1,7 @@
 import React from "react";
+import editIcon from "../../assets/img/edit.svg";
+import removeIcon from "../../assets/img/remove.svg";
+import './tasks.scss'
 
 const Task = ({id, text}) =>{
 
@@ -23,7 +26,14 @@ const Task = ({id, text}) =>{
                     </svg>
                 </label>
 
-            </div>   <input readOnly value={text} />
+            </div>
+                <div className={'tasks__items-row-text'}>
+                    <span>{text} </span>
+                    <div className={'tasks__items-row-control'}>4545
+                        <img src={editIcon} alt={'edit'}/>
+                        <img src={removeIcon} alt={'delete'}/>
+                    </div>
+                </div>
         </div>
     )
 }
