@@ -8,7 +8,7 @@ import axios from "axios";
 import AddTaskForm from "./AddTaskForm";
 import Task from "./Task";
 
-const Tasks = ({list, onEditTitle, onAddTask})=>{
+const Tasks = ({list, onEditTitle, onAddTask, onEditTask, onRemoveTask, onCompletedTask})=>{
 
     const editTitle = ()=>{
         const newTitle = window.prompt('Редактировать название списка', list.name);
@@ -32,7 +32,13 @@ const Tasks = ({list, onEditTitle, onAddTask})=>{
             {list.tasks.length === 0 ? (<h3>🤚 НЕТ ЗАДАЧ</h3>) :
                 <div className={'tasks__items'}>
                     {list.tasks.map(task => (
-                        <Task  key={task.id}  {...task}/>
+                        <Task
+                            key={task.id}
+                            removeTask={onRemoveTask}
+                            onEditTask={onEditTask}
+                            onCompletedTask={onCompletedTask}
+                            {...task}
+                        />
                     ))}
 
                 </div>}

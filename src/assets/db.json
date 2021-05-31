@@ -32,7 +32,7 @@
       "id": 2,
       "listId": 2,
       "text": "Изучить паттерны проектирования",
-      "completed": false
+      "completed": true
     },
     {
       "id": 3,
@@ -44,37 +44,13 @@
       "id": 4,
       "listId": 2,
       "text": "Redux (redux-observable, redux-saga)",
-      "completed": false
-    },
-    {
-      "listId": 2,
-      "text": "123",
-      "completed": true,
-      "id": 5
+      "completed": true
     },
     {
       "listId": 1,
       "text": "test",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "listId": 1,
-      "text": "qweqwe",
-      "completed": false,
-      "id": 7
-    },
-    {
-      "listId": 1,
-      "text": "qweqwe",
       "completed": true,
-      "id": 8
-    },
-    {
-      "listId": 1,
-      "text": "123",
-      "completed": false,
-      "id": 9
+      "id": 6
     },
     {
       "listId": 4,
@@ -83,184 +59,10 @@
       "id": 10
     },
     {
-      "listId": 2,
-      "text": "222",
-      "completed": true,
-      "id": 12
-    },
-    {
       "listId": 3,
-      "text": "gfgf",
-      "completed": false,
-      "id": 13
-    },
-    {
-      "listId": 3,
-      "text": "",
-      "completed": false,
-      "id": 14
-    },
-    {
-      "listId": 3,
-      "text": "67855",
-      "completed": false,
-      "id": 15
-    },
-    {
-      "listId": 3,
-      "text": "rter",
-      "completed": false,
-      "id": 16
-    },
-    {
-      "listId": 4,
-      "text": "asdasd",
-      "completed": false,
-      "id": 17
-    },
-    {
-      "listId": 1,
-      "text": "asdasd",
-      "completed": false,
-      "id": 18
-    },
-    {
-      "listId": 3,
-      "text": "2222",
-      "completed": false,
-      "id": 19
-    },
-    {
-      "listId": 3,
-      "text": "qweqwe",
+      "text": "tyyterwdfg",
       "completed": false,
       "id": 20
-    },
-    {
-      "listId": 3,
-      "text": "qweqwe",
-      "completed": false,
-      "id": 21
-    },
-    {
-      "listId": 3,
-      "text": "qaweqwe",
-      "completed": false,
-      "id": 22
-    },
-    {
-      "listId": 2,
-      "text": "sdfsdf",
-      "completed": false,
-      "id": 23
-    },
-    {
-      "listId": 2,
-      "text": "333",
-      "completed": false,
-      "id": 24
-    },
-    {
-      "listId": 2,
-      "text": "asdad",
-      "completed": false,
-      "id": 25
-    },
-    {
-      "listId": 2,
-      "text": "2w",
-      "completed": false,
-      "id": 26
-    },
-    {
-      "listId": 2,
-      "text": "qwqwe",
-      "completed": false,
-      "id": 27
-    },
-    {
-      "listId": 2,
-      "text": "qwewrqwr",
-      "completed": false,
-      "id": 28
-    },
-    {
-      "listId": 1,
-      "text": "qwqwe",
-      "completed": false,
-      "id": 29
-    },
-    {
-      "listId": 2,
-      "text": "it logs out the success stuff but I am interested in that true or false value, it is not returning true or false,",
-      "completed": false,
-      "id": 30
-    },
-    {
-      "listId": 3,
-      "text": "ry",
-      "completed": false,
-      "id": 31
-    },
-    {
-      "listId": 3,
-      "text": "tyey",
-      "completed": false,
-      "id": 32
-    },
-    {
-      "listId": 3,
-      "text": "ytuu",
-      "completed": false,
-      "id": 33
-    },
-    {
-      "listId": 4,
-      "text": "qw",
-      "completed": false,
-      "id": 34
-    },
-    {
-      "listId": 4,
-      "text": "qw",
-      "completed": false,
-      "id": 35
-    },
-    {
-      "listId": 4,
-      "text": "qweqwqwe",
-      "completed": false,
-      "id": 36
-    },
-    {
-      "listId": 2,
-      "text": "qweqwe qweqwew ",
-      "completed": false,
-      "id": 37
-    },
-    {
-      "listId": 1,
-      "text": "wer",
-      "completed": false,
-      "id": 39
-    },
-    {
-      "listId": 1,
-      "text": "wewwww",
-      "completed": false,
-      "id": 40
-    },
-    {
-      "listId": 3,
-      "text": "w",
-      "completed": false,
-      "id": 41
-    },
-    {
-      "listId": 4,
-      "text": "ewerr",
-      "completed": false,
-      "id": 42
     }
   ],
   "colors": [

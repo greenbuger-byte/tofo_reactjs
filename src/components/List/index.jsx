@@ -6,6 +6,7 @@ import removeIcon from '../../assets/img/remove.svg';
 import Skeleton from "react-loading-skeleton";
 
 const List = ({items, isRemovable, onClick, onRemove, onClickItem, activeItem}) =>{
+
     return (
         <React.Fragment>
             {items.length ?

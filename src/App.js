@@ -13,11 +13,50 @@ function App() {
     const [colors, setColors] = useState([]);
     const [activeItem, setActiveItem] = useState(null)
 
+    const createPatch = (field, value, id, listId) => {
+        const newList = lists.map(list=>{
+            if(list.id===listId) {
+                list.tasks.map(task=>{
+                    if(task.id===id) task[field]=value;
+                    return task;
+                });
+            }
+            return list;
+        });
+        setLists(newList);
+    }
+
+    const onCompletedTask = ( status, id, listsId) =>{
+        axios.patch(`http://localhost:8000/tasks/${id}`, {completed:status}).then((data)=>{
+            createPatch('completed', status, id, listsId);
+        })
+    }
+
+    const onEditTask = (text, id, listId) => {
+        axios.patch(`http://localhost:8000/tasks/${id}`, {text: text}).then(({data})=>{
+          createPatch('text', text, id, listId);
+        }).catch(err=> console.log('Не удалось отредактировать задачу'));
+    }
+
+    const onRemoveTask = (id, listId)=>{
+        //Task is remove
+    axios.delete(`http://localhost:8000/tasks/${id}`).then(({data})=>{
+        const newList = lists.map(list=>{
+            if(list.id === listId){
+                list.tasks = list.tasks.filter(task => task.id!==id);
+            }
+            return list;
+        });
+        setLists(newList);
+    }).catch(err=>{
+        console.log(err);
+        alert('Не удалось удалить задачу')
+    })
+    }
 
     useEffect(()=>{
         const itemId = location.pathname.split('lists/')[1];
             let list = lists.find(list=> list.id=== Number(itemId));
-            console.log(list);
             setActiveItem(list);
 
     }, [lists, location])
@@ -40,6 +79,7 @@ function App() {
         });
         setLists(newList);
     }
+
     const addTask = (id, obj)=>{
             const updatedList = lists.map(l=>{
                 if(l.id === id){
@@ -53,6 +93,7 @@ function App() {
     const addList = (obj)=>{
            setLists([...lists, {...obj, tasks:[]}]);
     }
+
     const removeList = (id)=>{
       if(window.confirm('Вы действительно хотите удалить список?')){
           axios.delete('http://localhost:8000/lists/'+id).then(({data})=>{
@@ -61,7 +102,6 @@ function App() {
           });
       }
     }
-
 
   return (
 
@@ -99,17 +139,26 @@ function App() {
         <div className={'todo__tasks'}>
             <Route path={'/'} exact>
                 {lists && lists.map(list=>{
-                 return   <Tasks key={list.id} list={list} onAddTask={addTask}  onEditTitle = {onEditTitle}/>
+                 return   <Tasks
+                     onCompletedTask={onCompletedTask}
+                     key={list.id}
+                     list={list}
+                     onRemoveTask={onRemoveTask}
+                     onEditTask={onEditTask}
+                     onAddTask={addTask}
+                     onEditTitle = {onEditTitle}/>
                 })
                 }
-
             </Route>
             <Route path={'/lists/:id'}>
-                <Tasks list={activeItem} onAddTask={addTask}  onEditTitle = {onEditTitle}/>
+                <Tasks
+                    list={activeItem}
+                    onCompletedTask={onCompletedTask}
+                    onAddTask={addTask}
+                    onRemoveTask={onRemoveTask}
+                    onEditTask={onEditTask}
+                    onEditTitle = {onEditTitle}/>
             </Route>
-
-
-
         </div>
     </div>
   );

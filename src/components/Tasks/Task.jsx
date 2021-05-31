@@ -1,14 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import editIcon from "../../assets/img/edit.svg";
 import removeIcon from "../../assets/img/remove.svg";
 import './tasks.scss'
 
-const Task = ({id, text}) =>{
+const Task = ({id, text, listId, completed, removeTask, onEditTask, onCompletedTask}) =>{
 
+    const editTask = () =>{
+        const editFormTask = window.prompt('Изменить задачу', text);
+        onEditTask(editFormTask, id, listId);
+    }
+    const onChecked = () =>{
+        setChecked(prev=>!checked);
+        onCompletedTask(!completed, id, listId)
+    }
+
+    const [checked, setChecked] = useState(completed)
     return (
         <div className={'tasks__items-row'}>
-            <div className={'checkbox'}>
-                <input id={`task-${id}`} type={'checkbox'}/>
+            <div className={'checkbox'} >
+                <input id={`task-${id}`} onChange={onChecked} type={'checkbox'} checked={checked}/>
                 <label htmlFor={`task-${id}`}>
                     <svg width="11"
                          height="8"
@@ -29,9 +39,9 @@ const Task = ({id, text}) =>{
             </div>
                 <div className={'tasks__items-row-text'}>
                     <span>{text} </span>
-                    <div className={'tasks__items-row-control'}>4545
-                        <img src={editIcon} alt={'edit'}/>
-                        <img src={removeIcon} alt={'delete'}/>
+                    <div className={'tasks__items-row-control'}>
+                        <img src={editIcon} onClick={editTask} alt={'edit'}/>
+                        <img src={removeIcon} onClick={()=>removeTask(id, listId)} alt={'delete'}/>
                     </div>
                 </div>
         </div>
